@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% for row in data %}
+    <p>
+    {% for i in range(1, row['level']) %}
+        --
+    {% endfor %}
+{{ row['name'] }}
+    </p>
+{% endfor %}
+<form action="add" method="post">
+    <h1>Создать новый узел</h1>
+    <label>Имя нового узла</label>
+    <input type="text" name="name"><br>
+    <label>Выберите родителя</label>
+    <select name="list">
+        {% for row in data %}
+            <option value="{{ row['level'] }} {{ row['left_key'] }} {{ row['right_key'] }}">{{ row['name'] }}</option>
+        {% endfor %}
+    </select><br>
+    <input type="submit" value="Добавить узел">
+</form>
+</body>
+</html>
